@@ -1,14 +1,59 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Datos Personales
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]='myForm'>
+          <div>
+            <ion-item>
+              <ion-input formControlName='rfc' name="rfc" type="text" placeholder="RFC" required></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.controls.rfc.invalid && myForm.controls.rfc.dirty">
+              <p>El rfc es obligatorio.</p>
+            </ion-item>
+            <ion-item>
+              <ion-input formControlName='nombre' name="nombre" type="text" placeholder="Nombre" required></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.controls.nombre.invalid && myForm.controls.nombre.dirty">
+              <p>El nombre es obligatorio.</p>
+            </ion-item>
+            <ion-item>
+              <ion-input formControlName='email' name="email" type="text" placeholder="Email" required></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.controls.email.invalid && myForm.controls.email.dirty">
+              <p>El email es obligatorio.</p>
+            </ion-item>
+            <ion-list>
+              <ion-item>
+                <ion-label>Sexo</ion-label>
+                <ion-select placeholder="Select one" value="M" formControlName='genero' name="genero" required>
+                  <ion-select-option name="M" value="M">Masculino</ion-select-option>
+                  <ion-select-option name="F" value="F">Femenino</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+
+            <ion-item>
+              <ion-input formControlName='curp' name="curp" type="text" placeholder="CURP" required></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.controls.curp.invalid && myForm.controls.curp.dirty">
+              <p>La curp es obligatorio.</p>
+            </ion-item>
+          </div>
+          <div>
+            <ion-button type="submit" [disabled]="myForm.invalid">Guardar</ion-button>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
